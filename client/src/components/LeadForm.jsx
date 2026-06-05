@@ -23,7 +23,7 @@ function LeadForm({refresh,setRefresh}){
     e.preventDefault()
 
     await axios.post(
-      "http://localhost:5000/api/leads",
+      "https://crm-backend-1zao.onrender.com/api/leads",
       formData
     )
 

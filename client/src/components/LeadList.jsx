@@ -16,7 +16,7 @@ function LeadList({refresh}){
   const fetchLeads=async()=>{
 
     const res=await axios.get(
-      "http://localhost:5000/api/leads"
+      "https://crm-backend-1zao.onrender.com/api/leads"
     )
 
     setLeads(res.data)
@@ -26,7 +26,7 @@ function LeadList({refresh}){
   const updateLead=async(id,data)=>{
 
     await axios.put(
-      `http://localhost:5000/api/leads/${id}`,
+      `https://crm-backend-1zao.onrender.com/api/leads/${id}`,
       data
     )
 
@@ -37,7 +37,7 @@ function LeadList({refresh}){
   const deleteLead=async(id)=>{
 
     await axios.delete(
-      `http://localhost:5000/api/leads/${id}`
+      `https://crm-backend-1zao.onrender.com/api/leads/${id}`
     )
 
     fetchLeads()
