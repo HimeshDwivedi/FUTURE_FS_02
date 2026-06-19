@@ -1,18 +1,26 @@
 const Admin=require("../models/Admin")
 const jwt=require("jsonwebtoken")
+const bcrypt=require("bcryptjs")
 
 const loginAdmin=async(req,res)=>{
 
   const {email,password}=req.body
 
-  console.log("Email Received:", email)
-  console.log("Password Received:", password)
-
   const admin=await Admin.findOne({email})
 
-  console.log("Admin Found:", admin)
+  if(!admin){
 
-  if(!admin || admin.password!==password){
+    return res.status(400).json({
+      message:"Invalid credentials"
+    })
+  }
+
+  const isMatch=await bcrypt.compare(
+    password,
+    admin.password
+  )
+
+  if(!isMatch){
 
     return res.status(400).json({
       message:"Invalid credentials"
