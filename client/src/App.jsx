@@ -1,33 +1,65 @@
-import {useState} from "react"
+import {BrowserRouter,Routes,Route} from "react-router-dom"
+
+import Login from "./pages/Login"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 import LeadForm from "./components/LeadForm"
 import LeadList from "./components/LeadList"
 
-function App(){
+import {useState} from "react"
 
-  const [refresh,setRefresh]=useState(false)
+function Dashboard(){
+
+  const[refresh,setRefresh]=useState(false)
+
+  const logout=()=>{
+    localStorage.removeItem("token")
+    window.location.href="/login"
+  }
 
   return(
+    <div>
 
-    <div className="app">
+      <nav className="navbar">
+        <h2>CRM Dashboard</h2>
 
-      <h1>Client Lead Management System</h1>
+        <button onClick={logout}>
+          Logout
+        </button>
+      </nav>
 
-      <LeadForm
-        refresh={refresh}
-        setRefresh={setRefresh}
-      />
+      <LeadForm setRefresh={setRefresh}/>
 
       <LeadList refresh={refresh}/>
-
-      <footer>
-        © 2026 Client Lead Management System | Developed By Himesh Kumar Dwivedi
-      </footer>
-
     </div>
-
   )
+}
 
+function App(){
+
+  return(
+    <BrowserRouter>
+
+      <Routes>
+
+        <Route
+          path="/login"
+          element={<Login/>}
+        />
+
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Dashboard/>
+            </ProtectedRoute>
+          }
+        />
+
+      </Routes>
+
+    </BrowserRouter>
+  )
 }
 
 export default App

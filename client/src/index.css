@@ -99,6 +99,44 @@ footer{
   border-radius:10px;
   color:#cbd5e1;
 }
+.login-container{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#f4f4f4;
+}
+
+.login-form{
+  background:white;
+  padding:30px;
+  border-radius:10px;
+  width:300px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.login-form input{
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+.login-form button{
+  padding:10px;
+  border:none;
+  background:black;
+  color:white;
+  cursor:pointer;
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px;
+}
 
 @media(max-width:768px){
 
