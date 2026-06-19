@@ -5,7 +5,12 @@ const loginAdmin=async(req,res)=>{
 
   const {email,password}=req.body
 
+  console.log("Email Received:", email)
+  console.log("Password Received:", password)
+
   const admin=await Admin.findOne({email})
+
+  console.log("Admin Found:", admin)
 
   if(!admin || admin.password!==password){
 
